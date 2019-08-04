@@ -18,7 +18,8 @@ This is a project that demonstrate how to use Symfony to create a user login sys
 1. git clone to your local
 2. Make sure you have docker instead in your local machine
 3. I have `.env` provided in the repo - It's a bad practice but I guess it'll be alright for demo app.  
-4. Run the command to bring up docker containers using `docker-compose up`, please keep this process running, or you can use `docker-compose up -d` to run all the docker containers in detached mode
+4. Install composer packages by running command `docker-compose exec php composer install`
+5. Run the command to bring up docker containers using `docker-compose up`, please keep this process running, or you can use `docker-compose up -d` to run all the docker containers in detached mode
     1. This will bring up several docker containers
         1. __Reverse proxy container__
             * This container is using traefik as the reverse proxy to redirect traffic to correct docker container
@@ -39,11 +40,12 @@ This is a project that demonstrate how to use Symfony to create a user login sys
         1. Symfony App - `user-login.docker.localhost`
         2. Docker Management App - `portainer.docker.localhost`
         3. Database Management App - `adminer.docker.localhost`
-5. To run the database migration and apply user fixtures:
+    3. If you are experiencing port conflicts, please shutdown your local service temporary.
+6. To run the database migration and apply user fixtures:
     1. make sure you are in the project root directory and have all the docker service running.
     2. run command `docker-compose exec php bin/console doctrine:migrations:migrate` to apply the database migrations
     3. run command `docker-compose exec php bin/console doctrine:fixture:load` to apply the user fixtures.
-6. To check the redis you can run the command `docker-compose exec cache.redis redis-cli` or `redis-commander` if you prefer web gui. You can use `cache.redis` as host.
+7. To check the redis you can run the command `docker-compose exec cache.redis redis-cli` or `redis-commander` if you prefer web gui. You can use `cache.redis` as host.
 
 ### Credentials for testing
 
